@@ -27,7 +27,7 @@
 
 
 
-##1. broadcast intent 전전송전송학전송하기
+##1. broadcast intent 전송하기
 
 
 [thread_1.JPG](https://github.com/SoHyunYang/androidtest_thread/blob/master/thread_1.JPG?,raw=true)
@@ -51,7 +51,7 @@
 
 
 
-##2. 동동적 broadcast receiver
+##2. 동적 broadcast receiver
 
 **textView 생성 & inflation **
 
@@ -122,12 +122,12 @@ http://happyourlife.tistory.com/m/post/121 참고
 
 ###참고문헌###
 Do it! 안드로이드 앱 프로그래밍
+실무에 바로 적용하는 안드로이드 프로그래밍
+
+http://koreaparks.tistory.com/128
+http://android-er.blogspot.kr/2015/04/example-of-using-alarmmanager-to.html
+http://blog.naver.com/ruly2001/70166117812
 
 
-[네이버 지식백과] 스레드 [thread] (IT용어사전, 한국정보통신기술협회)
-
-[출처] [Android Thread] 쓰레드 , 핸들러 |작성자 사자머리님
-
-[출처] 안드로이드 백그라운드 잘 다루기 - Thread, Looper, Handler|작성자 mari
 
 
