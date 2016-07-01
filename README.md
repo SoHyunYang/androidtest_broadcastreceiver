@@ -30,9 +30,8 @@
 ##1. broadcast intent 전송하기
 
 
-[thread_1.JPG](https://github.com/SoHyunYang/androidtest_thread/blob/master/thread_1.JPG?,raw=true)
-[thread_2.JPG](https://github.com/SoHyunYang/androidtest_thread/blob/master/thread_2.JPG?,raw=true)
-[thread_3.JPG](https://github.com/SoHyunYang/androidtest_thread/blob/master/thread_3.JPG?,raw=true)
+![batteryexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample1.JPG?raw=true)
+![batteryexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample2.JPG?raw=true)
 
 **Button 생성 & inflation**
 ```XML
@@ -52,6 +51,9 @@
 
 
 ##2. 동적 broadcast receiver
+
+![batteryexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample1.JPG?raw=true)
+![batteryexample3.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample3.JPG?raw=true)
 
 **textView 생성 & inflation **
 
@@ -86,14 +88,19 @@
 ```
 
 
+##3. Connectivity manager를 사용하여 네트워크 연결상황  broadcast로 전달
+![wifiexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample1.JPG?raw=true)
+![wifiexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample2.JPG?raw=true)
+![wifiexample3.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample1.JPG?raw=true)
+![wifiexample4.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample2.JPG?raw=true)
 
-
-##3. Pending intent
+##4. Pending intent
 http://micropilot.tistory.com/1994참고
 새 스레드는 Thread() 생성자로 만들어서 내부적으로 run()을 구현하던지, Thread(Runnable runnable) 생성자로 만들어서 Runnable 인터페이스를 구현한 객체를 생성하여 전달하던지 둘 중 하나의 방법으로 생성하게 된다. 후자에서 사용하는 것이 Runnable로 스레드의 run() 메서드를 분리한 것이다. 따라서 Runnable 인터페이스는 run() 추상 메서드를 가지고 있으므로 상속받은 클래스는 run()코드를 반드시 구현해야 한다.
 앞서 언급한대로 Message가 int나 Object같이 스레드 간 통신할 내용을 담는다면, Runnable은 실행할 run() 메서드와 그 내부에서 실행될 코드를 담는다는 차이점이 있다.
 
-
+![alarmexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample1.JPG?raw=true)
+![alarmexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample2.JPG?raw=true)
 
 **Handler 객체 생성**
 ```JAVA
@@ -106,7 +113,7 @@ http://micropilot.tistory.com/1994참고
  
 ```
 
-##4. goAsync()
+##5. goAsync()
 http://happyourlife.tistory.com/m/post/121 참고
 **정지버튼 생성**
 ```XML
