@@ -91,8 +91,8 @@
 ##3. Connectivity manager를 사용하여 네트워크 연결상황  broadcast로 전달
 ![wifiexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample1.JPG?raw=true)
 ![wifiexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample2.JPG?raw=true)
-![wifiexample3.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample1.JPG?raw=true)
-![wifiexample4.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample2.JPG?raw=true)
+![wifiexample3.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample3.JPG?raw=true)
+![wifiexample4.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample4.JPG?raw=true)
 
 ##4. Pending intent
 http://micropilot.tistory.com/1994참고
