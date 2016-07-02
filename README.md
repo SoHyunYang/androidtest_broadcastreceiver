@@ -326,7 +326,22 @@ getActivity(), getActivities(),getBroadcast(),getService()
 FLAG_CANCEL_CURRENT : 조건이 맞았을 때 현재하고 있던 것 멈추고 시작함
 ex) PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
+- alarmmanager
+```JAVA
+void set(int type, long triggerAtTime, PendingIntent operation);
 
+void setRepeating(int type, long triggerAtTime, long interval, PendingIntent operation)
+```
+
+|type                    | Description                                                                                    |
+|----------------------------------|------------------------------------------------------------------------------------------------|
+|RTC    | System.currentTimeMills() 메서드로 구한 세계 표준시로 지정한다.             |
+|RTC_WAKEUP  |    위와 같되 장비도 깨운다. |
+|ELAPSED_REALTIME | SystemClock.elapsedRealtime 메서드로 구한 부팅된 이후의 경과 시간으로 지정한다.                                |
+| ELAPSED_REALTIME_WAKEUP      | 위와 같되 장비도 깨운다. |
+
+triggerAtTime : type에 부합되는 시간값 \n
+operation :  알람을 처리할 개체를 설정한다. 주로 BR을 많이 사용한다.\n
 ![alarmexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample1.JPG?raw=true)
 ![alarmexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample2.JPG?raw=true)
 
