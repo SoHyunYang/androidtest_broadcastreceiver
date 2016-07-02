@@ -317,6 +317,12 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 ```
 
 ##4. Pending intent
+PendingIntent는 인텐트 정보를 가지고 있다가 받을 수 있는 어플리케이션에 그 인텐트를 전달한다. 대기 상태로 만들고, 위임하는 클래스이다. 지연 인텐트를 만들때 아래 메서드 중 하나를 사용해 인텐트를 어떻게 사용할지 미리 밝혀 주어야 한다. 
+
+getActivity(), getActivities(),getBroadcast(),getService()
+
+
+
 
 
 ![alarmexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample1.JPG?raw=true)
