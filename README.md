@@ -27,7 +27,8 @@ android 장치에서는 와이파이 접속 영역에 들어갔다 나오거나 
 
  void sendOrderedBroadcast (Intent intent, String receivePermission)
 ```
-receivePermission : 허가받은 수신자에게만 방송을 보내고자 할때 지정. AndroidManifest.xml 의 <uses-permission> tag 에서 설정
+receivePermission : 허가받은 수신자에게만 방송을 보내고자 할때 지정.AndroidManifest.xml 의 <uses-permission> tag 에서 설정
+
 순서있는 방송은 인텐트 필터의 android:priority 속성이 지정하는 중요도에 따라 수신순서가 결정된다.(숫자가 높은 것이 먼저 수신)
 
 ![batteryexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample1.JPG?raw=true)
@@ -326,10 +327,10 @@ getActivity(Context, int, Intent, int), getActivities(Context, int, Intent[], in
 |int FLAG_UPDATE_CURRENT        | Flag indicating that if the described PendingIntent already exists, then keep it but replace its extra data with what is in this new Intent. |
 
  
-
-대기하는 intent, 조건이 맞았을때(그위치에 근접했을 때) 시스템 OS에서 동작하는 것,조건이 맞았을 때 intent를 broadcast 던져줌(나한테)
-FLAG_CANCEL_CURRENT : 조건이 맞았을 때 현재하고 있던 것 멈추고 시작함
 ex) PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+대기하는 intent, 조건이 맞았을때 시스템 OS에서 intent를 broadcast로 던져줌
+FLAG_CANCEL_CURRENT : 조건이 맞았을 때 현재하고 있던 것 멈추고 시작함
 
 - alarmmanager
 ```JAVA
@@ -345,8 +346,9 @@ void setRepeating(int type, long triggerAtTime, long interval, PendingIntent ope
 |ELAPSED_REALTIME | SystemClock.elapsedRealtime 메서드로 구한 부팅된 이후의 경과 시간으로 지정한다.                                |
 | ELAPSED_REALTIME_WAKEUP      | 위와 같되 장비도 깨운다. |
 
-triggerAtTime : type에 부합되는 시간값 \n
-operation :  알람을 처리할 개체를 설정한다. 주로 BR을 많이 사용한다.\n
+
+triggerAtTime : type에 부합되는 시간값 
+operation :  알람을 처리할 개체를 설정한다. 주로 BR을 많이 사용한다.
 ![alarmexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample1.JPG?raw=true)
 ![alarmexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample2.JPG?raw=true)
 
