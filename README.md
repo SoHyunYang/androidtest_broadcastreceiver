@@ -7,7 +7,7 @@
 마지막 수정 : 2016년 7월 2일, 양소현
 ```
 
-# androidtest_broadcastreceiver
+# broadcastreceiver
 
 **Service**
 
@@ -327,6 +327,14 @@ PendingIntent는 인텐트 정보를 가지고 있다가 받을 수 있는 어�
 
 getActivity(Context, int, Intent, int), getActivities(Context, int, Intent[], int), getBroadcast(Context, int, Intent, int),  getService(Context, int, Intent, int); 
 
+|Flag                             | Description                                                                                    |
+|----------------------------------|------------------------------------------------------------------------------------------------|
+|int FLAG_CANCEL_CURRENT       | Flag indicating that if the described PendingIntent already exists, the current one should be canceled before generating a new one.         |
+|int FLAG_NO_CREATE     | Flag indicating that if the described PendingIntent does not already exist, then simply return null instead of creating it.                                                             |
+|int FLAG_ONE_SHOT  | Flag indicating that this PendingIntent can be used only once.                                                           |
+|int FLAG_UPDATE_CURRENT        | Flag indicating that if the described PendingIntent already exists, then keep it but replace its extra data with what is in this new Intent. |
+
+ 
 
 대기하는 intent, 조건이 맞았을때(그위치에 근접했을 때) 시스템 OS에서 동작하는 것,조건이 맞았을 때 intent를 broadcast 던져줌(나한테)
 FLAG_CANCEL_CURRENT : 조건이 맞았을 때 현재하고 있던 것 멈추고 시작함
