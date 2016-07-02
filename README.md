@@ -495,12 +495,17 @@ Thread thread = new Thread(){
 
 ###참고문헌###
 Do it! 안드로이드 앱 프로그래밍
+
 실무에 바로 적용하는 안드로이드 프로그래밍
 
 http://koreaparks.tistory.com/128
+
 http://android-er.blogspot.kr/2015/04/example-of-using-alarmmanager-to.html
+
 http://blog.naver.com/ruly2001/70166117812
+
 http://www.vogella.com/tutorials/AndroidBroadcastReceiver/article.html
 
  [안드로이드] Broadcast Receiver|작성자 낭만캠퍼
+ 
  알람(AlarmManager)|작성자 루미주인
