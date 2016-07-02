@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
 ![wifiexample3.jpg](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample3.jpg?raw=true)
 ![wifiexample4.jpg](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample4.jpg?raw=true)
 
-**NetworkChangeReceiver(Broadcast Receiver) 생성**
+**NetworkUtil(java file) 생성**
 
 ```JAVA
 public class NetworkUtil {
