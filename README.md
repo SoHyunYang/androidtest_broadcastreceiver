@@ -121,14 +121,14 @@ public class CustomReceiver extends BroadcastReceiver {
 많은 시스템 이벤트들은 Intent class에 final static field로 정의되어 있다.
 
 ex )
------------------------------------------------------------------------------------------------------------------------------------
-|Event                            | Description                                                                                    |
------------------------------------------------------------------------------------------------------------------------------------|
-Intent.ACTION_BOOT_COMPLETED      | Boot completed. Requires the android.permission.RECEIVE_BOOT_COMPLETED permission              |
-Intent.ACTION_POWER_CONNECTED     | Power got connected to the device.                                                             |
-Intent.ACTION_POWER_DISCONNECTED  | Power got disconnected to the device.                                                          |
-Intent.ACTION_BATTERY_LOW         | Triggered on low battery. Typically used to reduce activities in your app which consume power. |
-Intent.ACTION_BATTERY_OKAY        | Battery status good again.                                                                     |
+
+|Event                             | Description                                                                                    |
+|----------------------------------|------------------------------------------------------------------------------------------------|
+|Intent.ACTION_BOOT_COMPLETED      | Boot completed. Requires the android.permission.RECEIVE_BOOT_COMPLETED permission              |
+|Intent.ACTION_POWER_CONNECTED     | Power got connected to the device.                                                             |
+|Intent.ACTION_POWER_DISCONNECTED  | Power got disconnected to the device.                                                          |
+|Intent.ACTION_BATTERY_LOW         | Triggered on low battery. Typically used to reduce activities in your app which consume power. |
+|Intent.ACTION_BATTERY_OKAY        | Battery status good again.                                                                     |
 
 
 
