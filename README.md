@@ -29,6 +29,9 @@
 
 ##1. broadcast intent 전송하기
 
+브로드캐스트 인텐트를 전송하려면 인텐트를 생성하고 그것을 sendBroadcast(Intent)의 인자로 전달하면 된다.
+시스템의 많은 컴포넌트들이 어떤 이벤트가 생겼는지 알 필요가 있을 때 안드로이드는 브로드캐스트 인텐트를 사용해서 그것에 관해 모든 컴포넌트에게 알려준다. 브로드캐스트 인턴트는 우리가 알고 있는 일반 인텐트와 유사하게 동작한다. 단지 차이점은, 브로드캐스트 인텐트는 여러 컴포넌트가 동시에 받을 수 있다는 것이다.
+
 
 ![batteryexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample1.JPG?raw=true)
 ![batteryexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample2.JPG?raw=true)
@@ -111,6 +114,11 @@ public class CustomReceiver extends BroadcastReceiver {
 
 
 ##2. 동적 broadcast receiver
+
+매니페스트에 등록된 독립형 브로드캐스트 수신자는 해당 Activity가 죽어도 계속 인텐트를 수신받는다. 여기서 해당 Activity가 살아있는 동안만 인텐트를 수신하게 하기 위해서는 동적 브로드캐스트 수신자를 사용하여야 한다. 이 때 동적 수신자는 매니페스트가 아닌 JAVA코드에 등록된다. 수신자를 등록할 때는 registerReceiver(Broadcast Receiver, IntentFilter)를 호출하고, 수신자를 해지할 때는 unregisterReceiver(BroadcstReceiver)를 호출한다. 동적으로 코드에 등록된 브로드캐스트 수신자는 자신을 클린업하는 것을 고려하며 onResume() 내부에서 등록하고 onPause()에서 등록을 해지한다.
+
+- IntentFilter
+addCategory(String), addAction(String), addDataPath(String)등의 메소드를 호출하여 필터를 구성한다.
 
 ![batteryexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample1.JPG?raw=true)
 ![batteryexample3.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample3.JPG?raw=true)
@@ -293,9 +301,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 ```
 
 ##4. Pending intent
-http://micropilot.tistory.com/1994참고
-새 스레드는 Thread() 생성자로 만들어서 내부적으로 run()을 구현하던지, Thread(Runnable runnable) 생성자로 만들어서 Runnable 인터페이스를 구현한 객체를 생성하여 전달하던지 둘 중 하나의 방법으로 생성하게 된다. 후자에서 사용하는 것이 Runnable로 스레드의 run() 메서드를 분리한 것이다. 따라서 Runnable 인터페이스는 run() 추상 메서드를 가지고 있으므로 상속받은 클래스는 run()코드를 반드시 구현해야 한다.
-앞서 언급한대로 Message가 int나 Object같이 스레드 간 통신할 내용을 담는다면, Runnable은 실행할 run() 메서드와 그 내부에서 실행될 코드를 담는다는 차이점이 있다.
+
 
 ![alarmexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample1.JPG?raw=true)
 ![alarmexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample2.JPG?raw=true)
@@ -417,17 +423,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 ```
 
 ##5. goAsync()
-http://happyourlife.tistory.com/m/post/121 참고
-**정지버튼 생성**
-```XML
- 
-```
 
-**flag를 만들어 정지버튼을 눌렀을 때 Thread 정지시키기**
-```JAVA
-
-
-```
+브로드캐스트 수신자는 짧은 시간 동안만 살아 있으므로 그것을 사용해서 할 수 있는 일에는 제약이 따른다. 예를 들어, 비동기 API를 사용할 수 없다. onReceive(Context, intent)메소드가 실행되는 동안만 수신자가 살아있기 때문이다. 따라서 그 메소드에서 너무 과도하게 많은 일을 할 수 없다. 즉, 네트워킹도 어렵고 데이터베이스와 같은 영구적인 스토리지를 사용하는 일도 처리하기 어렵다.
 
 
 ###참고문헌###
