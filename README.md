@@ -31,7 +31,13 @@
 
 브로드캐스트 인텐트를 전송하려면 인텐트를 생성하고 그것을 sendBroadcast(Intent)의 인자로 전달하면 된다.
 시스템의 많은 컴포넌트들이 어떤 이벤트가 생겼는지 알 필요가 있을 때 안드로이드는 브로드캐스트 인텐트를 사용해서 그것에 관해 모든 컴포넌트에게 알려준다. 브로드캐스트 인턴트는 우리가 알고 있는 일반 인텐트와 유사하게 동작한다. 단지 차이점은, 브로드캐스트 인텐트는 여러 컴포넌트가 동시에 받을 수 있다는 것이다.
+```JAVA
+ void sendBroadcast (Intent intent [, String receivePermission] )
 
+ void sendOrderedBroadcast (Intent intent, String receivePermission)
+```
+receivePermission : 허가받은 수신자에게만 방송을 보내고자 할때 지정. AndroidManifest.xml 의 <uses-permission> tag 에서 설정
+순서있는 방송은 인텐트 필터의 android:priority 속성이 지정하는 중요도에 따라 수신순서가 결정된다.(숫자가 높은 것이 먼저 수신)
 
 ![batteryexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample1.JPG?raw=true)
 ![batteryexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample2.JPG?raw=true)
@@ -475,5 +481,5 @@ http://android-er.blogspot.kr/2015/04/example-of-using-alarmmanager-to.html
 http://blog.naver.com/ruly2001/70166117812
 http://www.vogella.com/tutorials/AndroidBroadcastReceiver/article.html
 
-
-
+ [안드로이드] Broadcast Receiver|작성자 낭만캠퍼
+ 알람(AlarmManager)|작성자 루미주인
