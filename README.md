@@ -117,7 +117,21 @@ public class CustomReceiver extends BroadcastReceiver {
 
 매니페스트에 등록된 독립형 브로드캐스트 수신자는 해당 Activity가 죽어도 계속 인텐트를 수신받는다. 여기서 해당 Activity가 살아있는 동안만 인텐트를 수신하게 하기 위해서는 동적 브로드캐스트 수신자를 사용하여야 한다. 이 때 동적 수신자는 매니페스트가 아닌 JAVA코드에 등록된다. 수신자를 등록할 때는 registerReceiver(Broadcast Receiver, IntentFilter)를 호출하고, 수신자를 해지할 때는 unregisterReceiver(BroadcstReceiver)를 호출한다. 동적으로 코드에 등록된 브로드캐스트 수신자는 자신을 클린업하는 것을 고려하며 onResume() 내부에서 등록하고 onPause()에서 등록을 해지한다.
 
-- IntentFilter
+- System broadcasts :
+많은 시스템 이벤트들은 Intent class에 final static field로 정의되어 있다.
+
+ex )
+Event                             | Description
+__________________________________________________________________________________________________________________
+Intent.ACTION_BOOT_COMPLETED      | Boot completed. Requires the android.permission.RECEIVE_BOOT_COMPLETED permission
+Intent.ACTION_POWER_CONNECTED     | Power got connected to the device.
+Intent.ACTION_POWER_DISCONNECTED  | Power got disconnected to the device.
+Intent.ACTION_BATTERY_LOW         | Triggered on low battery. Typically used to reduce activities in your app which consume power.
+Intent.ACTION_BATTERY_OKAY        | Battery status good again.
+
+
+
+- IntentFilter :
 addCategory(String), addAction(String), addDataPath(String)등의 메소드를 호출하여 필터를 구성한다.
 
 ![batteryexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample1.JPG?raw=true)
@@ -200,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 ##3. Connectivity manager를 사용하여 네트워크 연결상황  broadcast로 전달
+
 ![wifiexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample1.JPG?raw=true)
 ![wifiexample2.jpg](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample2.jpg?raw=true)
 ![wifiexample3.jpg](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample3.jpg?raw=true)
@@ -434,7 +449,7 @@ Do it! 안드로이드 앱 프로그래밍
 http://koreaparks.tistory.com/128
 http://android-er.blogspot.kr/2015/04/example-of-using-alarmmanager-to.html
 http://blog.naver.com/ruly2001/70166117812
-
+http://www.vogella.com/tutorials/AndroidBroadcastReceiver/article.html
 
 
 
