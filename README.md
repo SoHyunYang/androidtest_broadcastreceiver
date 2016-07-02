@@ -35,19 +35,79 @@
 
 **Button 생성 & inflation**
 ```XML
+  <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="kr.co.mash_up.wifiexample.MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="129dp"
+        />
+</RelativeLayout>
+
+
+```
+```JAVA
+public class MainActivity extends AppCompatActivity {
+
+
   
+    Button button;
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        button= (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+
+                intent.setAction("exam.Action");
+
+                sendBroadcast(intent);
+            }
+        });
+
+
+    }
 ```
+**CustomReceiver(Broadcast Receiver) 생성**
+
 ```JAVA
+public class CustomReceiver extends BroadcastReceiver {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Toast.makeText(context,"CustomReceiver : " +intent.getAction(), Toast.LENGTH_LONG).show();
+    }
+}
 
 ```
-**Thread 생성**
+**manifests 설정**
 
-```JAVA
-
-
+```XML
+   <receiver
+            android:name=".CustomReceiver">
+            <intent-filter>
+                <action android:name="exam.Action" />
+            </intent-filter>
+        </receiver>
 ```
-
 
 
 ##2. 동적 broadcast receiver
@@ -55,37 +115,80 @@
 ![batteryexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample1.JPG?raw=true)
 ![batteryexample3.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample3.JPG?raw=true)
 
-**textView 생성 & inflation **
-
-```XML
+**BatteryChangeReceiver(Broadcast Receiver) 생성**
 
 
+
+```JAVA
+public class BatteryChangeReceiver extends BroadcastReceiver {
+
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(context, "BatteryChangeReceiver : "+intent.getAction(), Toast.LENGTH_LONG).show();
+
+
+        }
+
+}
 ```
 
 ```JAVA
+public class MainActivity extends AppCompatActivity {
 
+
+    private BatteryChangeReceiver batBR = new BatteryChangeReceiver();
+
+    Button button;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        button= (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+
+                intent.setAction("exam.Action");
+
+                sendBroadcast(intent);
+            }
+        });
+
+
+    }
+
+
+
+        @Override
+    protected void onResume() {
+        super.onResume();
+
+        IntentFilter filter = new IntentFilter();
+
+        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
+
+        registerReceiver(batBR, filter);
+
+
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(batBR);
+
+
+
+    }
+}
 ```
 
-**handler 사용하지 않았을 시 오류**
-
-```JAVA
- 
-
-```
-
-```JAVA
-
-
-```
-**handler class정의 후 handler 객체 생성**
-```JAVA
- 
-
-```
-```JAVA
-
-
-```
 
 
 ##3. Connectivity manager를 사용하여 네트워크 연결상황  broadcast로 전달
@@ -93,6 +196,101 @@
 ![wifiexample2.jpg](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample2.jpg?raw=true)
 ![wifiexample3.jpg](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample3.jpg?raw=true)
 ![wifiexample4.jpg](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/wifiexample4.jpg?raw=true)
+
+**NetworkChangeReceiver(Broadcast Receiver) 생성**
+
+```JAVA
+public class NetworkUtil {
+    public static int TYPE_WIFI = 1;
+    public static int TYPE_MOBILE = 2;
+    public static int TYPE_NOT_CONNECTED = 0;
+
+
+    public static int getConnectivityStatus(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (null != activeNetwork) {
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI)
+                return TYPE_WIFI;
+
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE)
+                return TYPE_MOBILE;
+        }
+        return TYPE_NOT_CONNECTED;
+    }
+
+    public static String getConnectivityStatusString(Context context) {
+        int conn = NetworkUtil.getConnectivityStatus(context);
+        String status = null;
+        if (conn == NetworkUtil.TYPE_WIFI) {
+            status = "Wifi enabled";
+        } else if (conn == NetworkUtil.TYPE_MOBILE) {
+            status = "Mobile data enabled";
+        } else if (conn == NetworkUtil.TYPE_NOT_CONNECTED) {
+            status = "Not connected to Internet";
+        }
+        return status;
+    }
+
+}
+```
+
+
+**NetworkChangeReceiver(Broadcast Receiver) 생성**
+
+
+
+```JAVA
+public class NetworkChangeReceiver extends BroadcastReceiver {
+
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String status = NetworkUtil.getConnectivityStatusString(context);
+
+        Toast.makeText(context, status, Toast.LENGTH_LONG).show();
+
+    }
+}
+
+```
+
+**manifests 설정(permission 추가)**
+
+```XML
+ <?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kr.co.mash_up.wifiexample2">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".NetworkChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
+```
 
 ##4. Pending intent
 http://micropilot.tistory.com/1994참고
@@ -102,15 +300,120 @@ http://micropilot.tistory.com/1994참고
 ![alarmexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample1.JPG?raw=true)
 ![alarmexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample2.JPG?raw=true)
 
-**Handler 객체 생성**
-```JAVA
+**XML 구성**
+```XML
+<?xml version="1.0" encoding="utf-8"?>
 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="kr.co.mash_up.alarmexample.MainActivity" >
+
+
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/setnocheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Alarm 10 sec later - alarmManager.set()" />
+
+
+
+</LinearLayout>
 
 ```
 
-**Thread 내에서 사용될 println 함수 내에서 Runnable객체 사용**
+**MainActivity 구성**
 ```JAVA
+ public class MainActivity extends ActionBarActivity {
+
+    Chronometer chronometer;
+    Button btnSetNoCheck;
+    final static int RQS_1 = 1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        chronometer = (Chronometer)findViewById(R.id.chronometer);
+        btnSetNoCheck = (Button)findViewById(R.id.setnocheck);
+        btnSetNoCheck.setOnClickListener(onClickListener);
+
+    }
+
+
+    View.OnClickListener onClickListener = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            chronometer.setBase(SystemClock.elapsedRealtime());
+            chronometer.start();
+
+            //10 seconds later
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.SECOND, 10);
+
+            Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
+            PendingIntent pendingIntent =
+                    PendingIntent.getBroadcast(getBaseContext(),
+                            RQS_1, intent, PendingIntent.FLAG_ONE_SHOT);
+            AlarmManager alarmManager =
+                    (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+            if(v==btnSetNoCheck){
+                alarmManager.set(AlarmManager.RTC_WAKEUP,
+                        cal.getTimeInMillis(), pendingIntent);
+                Toast.makeText(getBaseContext(),
+                        "call alarmManager.set()",
+                        Toast.LENGTH_LONG).show();
+
+
+        }
+
+    };
+
+};
+}
+
+```
+**AlarmReceiver(Broadcast Receiver) 생성**
+
+
+
+```JAVA
+public class AlarmReceiver extends BroadcastReceiver {
  
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Toast.makeText(context,
+                "AlarmReceiver.onReceive()",
+                Toast.LENGTH_LONG).show();
+
+    }
+}
+
+```
+
+**manifests 확인**
+
+```XML
+ <receiver
+            android:name=".AlarmReceiver"
+           ></receiver>
+
 ```
 
 ##5. goAsync()
