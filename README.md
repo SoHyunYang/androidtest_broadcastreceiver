@@ -134,9 +134,10 @@ ex )
 addCategory(String), addAction(String), addDataPath(String)등의 메소드를 호출하여 필터를 구성한다.
 
 ![intentfilter.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/intentfilter.JPG?raw=true)
-위의 그림과 같이 무수히 많은 intent들이 다른 컴포넌트들에게 메시지를 보내지만, 호출을 받는 컴포넌트의 intent filter에 호출한 intent의 action 값이 정의 되어 있어야 통과 할 수 있습니다. 그래야 해당 intent를 컴포넌트에 전달하게 되고, 해당 컴포넌트는 intent에 실려온 메시지를 받아 작업을 수행 할 수 있게 되는 것 입니다. 
 
-즉,  해당 intent를 호출 할 때, intent filter를 지정한 Activity에서는 메시지를 전달 받을 수 있게 됩니다.
+위의 그림과 같이 무수히 많은 intent들이 다른 컴포넌트들에게 메시지를 보내지만, 호출을 받는 컴포넌트의 intent filter에 호출한 intent의 action 값이 정의 되어 있어야 통과 할 수 있다. 그래야 해당 intent를 컴포넌트에 전달하게 되고, 해당 컴포넌트는 intent에 실려온 메시지를 받아 작업을 수행 할 수 있게 되는 것이다. 
+
+즉,  해당 intent를 호출 할 때, intent filter를 지정한 Activity에서는 메시지를 전달 받을 수 있게 된다.
 
 
 ![batteryexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample1.JPG?raw=true)
