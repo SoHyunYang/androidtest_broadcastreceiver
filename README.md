@@ -31,6 +31,14 @@ receivePermission : 허가받은 수신자에게만 방송을 보내고자 할�
 
 순서있는 방송은 인텐트 필터의 android:priority 속성이 지정하는 중요도에 따라 수신순서가 결정된다.(숫자가 높은 것이 먼저 수신)
 
+- android:enabled
+시스템에 의해서 브로드캐스트 리시버가 instance화 되냐 안되냐를 true,false로 나타냄
+default value : true
+
+- android:exported
+브로드캐스트 리시버가 이것의 application 외부에 있는 소스로부터 메세지를 받을 수 있냐 없냐를 true, false로 나타냄
+default value : true
+
 ![batteryexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample1.JPG?raw=true)
 ![batteryexample2.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/batteryexample2.JPG?raw=true)
 
