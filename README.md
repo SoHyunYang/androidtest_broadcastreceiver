@@ -480,6 +480,17 @@ public class AlarmReceiver extends BroadcastReceiver {
 브로드캐스트 수신자는 짧은 시간 동안만 살아 있으므로 그것을 사용해서 할 수 있는 일에는 제약이 따른다. 예를 들어, 비동기 API를 사용할 수 없다. onReceive(Context, intent)메소드가 실행되는 동안만 수신자가 살아있기 때문이다. 따라서 그 메소드에서 너무 과도하게 많은 일을 할 수 없다. 즉, 네트워킹도 어렵고 데이터베이스와 같은 영구적인 스토리지를 사용하는 일도 처리하기 어렵다.
 
 
+```JAVA
+final PendingResult result = goAsync();
+Thread thread = new Thread(){
+  public void run(){
+  //코드 내용
+  result.finish();
+  };
+  thread.start();
+}
+```
+
 ###참고문헌###
 Do it! 안드로이드 앱 프로그래밍
 실무에 바로 적용하는 안드로이드 프로그래밍
