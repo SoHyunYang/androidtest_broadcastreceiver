@@ -322,7 +322,9 @@ PendingIntent는 인텐트 정보를 가지고 있다가 받을 수 있는 어�
 getActivity(), getActivities(),getBroadcast(),getService()
 
 
-
+대기하는 intent, 조건이 맞았을때(그위치에 근접했을 때) 시스템 OS에서 동작하는 것,조건이 맞았을 때 intent를 broadcast 던져줌(나한테)
+FLAG_CANCEL_CURRENT : 조건이 맞았을 때 현재하고 있던 것 멈추고 시작함
+ex) PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
 
 ![alarmexample1.JPG](https://github.com/SoHyunYang/androidtest_broadcastreceiver/blob/master/alarmexample1.JPG?raw=true)
