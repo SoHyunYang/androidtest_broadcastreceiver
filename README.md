@@ -319,7 +319,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 ##4. Pending intent
 PendingIntent는 인텐트 정보를 가지고 있다가 받을 수 있는 어플리케이션에 그 인텐트를 전달한다. 대기 상태로 만들고, 위임하는 클래스이다. 지연 인텐트를 만들때 아래 메서드 중 하나를 사용해 인텐트를 어떻게 사용할지 미리 밝혀 주어야 한다. 
 
-getActivity(), getActivities(),getBroadcast(),getService()
+getActivity(Context, int, Intent, int), getActivities(Context, int, Intent[], int), getBroadcast(Context, int, Intent, int),  getService(Context, int, Intent, int); 
 
 
 대기하는 intent, 조건이 맞았을때(그위치에 근접했을 때) 시스템 OS에서 동작하는 것,조건이 맞았을 때 intent를 broadcast 던져줌(나한테)
